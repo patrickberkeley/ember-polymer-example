@@ -1,3 +1,15 @@
-<h2 id='title'>Welcome to Ember.js</h2>
-
-{{outlet}}
+<core-toolbar>
+  <paper-tabs id="tabs" selected="all" self-end>
+    <paper-tab name="all" {{action "all"}}>All</paper-tab>
+    <paper-tab name="favorites" {{action "favorites"}}>Favorites</paper-tab>
+  </paper-tabs>
+</core-toolbar>
+<div class="container" layout vertical center>
+  {{outlet}}
+  {{!-- <post-card>
+    <img width="70" height="70"
+    src="/assets/images/avatar-07.svg">
+    <h2>Another Developer</h2>
+    <p>I'm composing with shadow DOM!</p>
+  </post-card> --}}
+</div>

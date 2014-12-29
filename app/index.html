@@ -5,16 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>EmberPolymerTest</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
     {{content-for 'head'}}
+
+    <script src="assets/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="assets/vulcanized.html">
 
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/ember-polymer-test.css">
 
     {{content-for 'head-footer'}}
   </head>
-  <body>
+  <body unresolved>
     {{content-for 'body'}}
 
     <script src="assets/vendor.js"></script>

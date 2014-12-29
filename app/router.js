@@ -6,6 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('post-cards', { path: '/'});
+  this.route('favorites');
 });
 
 export default Router;
