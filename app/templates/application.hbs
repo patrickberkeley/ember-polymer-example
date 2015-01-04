@@ -1,8 +1,8 @@
 <core-toolbar>
-  <paper-tabs id="tabs" selected="all" self-end>
-    <paper-tab name="all" {{action "all"}}>All</paper-tab>
-    <paper-tab name="favorites" {{action "favorites"}}>Favorites</paper-tab>
-  </paper-tabs>
+  {{#view 'paper-tabs' id="tabs"}}
+    {{#view 'paper-tab' name="all" route="post-cards"}}All{{/view}}
+    {{#view 'paper-tab' name="favorites" route="favorites"}}Favorites{{/view}}
+  {{/view}}
 </core-toolbar>
 <div class="container" layout vertical center>
   {{outlet}}
