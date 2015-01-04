@@ -3,7 +3,7 @@
   "dependencies": {
     "handlebars": "2.0.0",
     "jquery": "^1.11.1",
-    "ember": "1.10.0-beta.3",
+    "ember": "components/ember#canary",
     "ember-data": "1.0.0-beta.14",
     "ember-resolver": "~0.1.10",
     "loader.js": "stefanpenner/loader.js#1.0.1",
@@ -16,5 +16,8 @@
     "polymer": "Polymer/polymer#~0.5.2",
     "core-elements": "Polymer/core-elements#~0.5.2",
     "paper-elements": "Polymer/paper-elements#~0.5.2"
+  },
+  "resolutions": {
+    "ember": "canary"
   }
 }

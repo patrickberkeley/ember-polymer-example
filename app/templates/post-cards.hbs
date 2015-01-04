@@ -4,7 +4,7 @@
                                isFavorited=post.isFavorited
                                attributePropertys='isFavorited:favorite'
                                on-events='favorite-tapped:favoriteTapped'}}
-    <img width="70" height="70" {{bind-attr src=post.avatar}}>
+    <img width="70" height="70" src="{{post.avatar}}">
     <h2>{{post.username}}</h2>
     <p>{{post.text}}</p>
   {{/evented-polymer-component}}
