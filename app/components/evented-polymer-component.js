@@ -2,12 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   'on-events': '',
-  attributePropertys: '',
+  attributeProperties: '',
   eventListeners: [],
 
   onAttributePropertyBindingsUpdate: function() {
-    this.set('attributeBindings', this.get('attributePropertys').split(' '));
-  }.observes('attributePropertys').on('init'),
+    this.set('attributeBindings', this.get('attributeProperties').split(' '));
+  }.observes('attributeProperties').on('init'),
 
   createEventListener: function(polymerEventName, actionName) {
     var self      = this,
