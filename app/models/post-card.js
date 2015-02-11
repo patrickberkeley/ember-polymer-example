@@ -13,7 +13,7 @@ export default DS.Model.extend({
       return '';
     }
     else {
-      return false;
+      return null;
     }
   }.property('favorite')
 });

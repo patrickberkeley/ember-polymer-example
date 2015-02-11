@@ -1,32 +1,38 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  'on-events': '',
+  onEventBindings: '',
+  publishedPropertyBindings: '',
   attributeProperties: '',
   eventListeners: [],
+  _elementBind: null,
 
   onAttributePropertyBindingsUpdate: function() {
     this.set('attributeBindings', this.get('attributeProperties').split(' '));
   }.observes('attributeProperties').on('init'),
 
-  createEventListener: function(polymerEventName, actionName) {
-    var self      = this,
-        element   = this.$()[0];
+  createEventListener: function(polymerEventName) {
+    var self = this;
+
+    return function() {
+      var args = [polymerEventName, self].concat(Array.prototype.slice.call(arguments));
+
+      self.sendAction.apply(self, args);
+    };
+  },
+
+  setupEventListener: function(polymerEventName, actionName) {
+    var element   = this.$()[0];
 
     if (element) {
-      var eventListeners = this.get('eventListeners');
-
-      var eventListener = function() {
-        var args = [polymerEventName, self].concat(Array.prototype.slice.call(arguments));
-
-        self.sendAction.apply(self, args);
-      };
+      var eventListeners   = this.get('eventListeners'),
+          newEventListener = this.createEventListener(polymerEventName);
 
       this.set(polymerEventName, actionName);
-      element.addEventListener(polymerEventName, eventListener);
+      element.addEventListener(polymerEventName, newEventListener);
       eventListeners.addObject({
         name: polymerEventName + ':' + actionName,
-        listener: eventListener
+        listener: newEventListener
       });
     }
   },
@@ -36,11 +42,11 @@ export default Ember.Component.extend({
         name   = split[0],
         target = split[1];
 
-    this.createEventListener(name, target);
+    this.setupEventListener(name, target);
   },
 
   setEventListeners: function() {
-    var events         = this.get('on-events').split(' '),
+    var events         = this.get('onEventBindings').split(' '),
         self           = this;
 
     events.forEach(function(event) {
@@ -48,7 +54,24 @@ export default Ember.Component.extend({
     });
   },
 
+  setPublishedPropertyBindings: function() {
+    var propertyBindings = this.get('publishedPropertyBindings').split(' '),
+        element          = this.$()[0],
+        self             = this;
+
+    if (element && propertyBindings) {
+      propertyBindings.forEach(function(propertyBinding) {
+        var split             = propertyBinding.split(':'),
+            componentProperty = split[0],
+            publishedProperty = split[1];
+
+        element[publishedProperty] = self.get(componentProperty);
+      });
+    }
+  },
+
   didInsertElement: function() {
+    this.setPublishedPropertyBindings();
     this.setEventListeners();
   }
 });
