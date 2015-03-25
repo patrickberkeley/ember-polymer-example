@@ -13,9 +13,9 @@
     "ember-qunit": "0.2.8",
     "ember-qunit-notifications": "0.0.7",
     "qunit": "~1.17.1",
-    "polymer": "Polymer/polymer#~0.5.2",
-    "core-elements": "Polymer/core-elements#~0.5.2",
-    "paper-elements": "Polymer/paper-elements#~0.5.2"
+    "polymer": "Polymer/polymer#~0.5.5",
+    "core-elements": "Polymer/core-elements#~0.5.5",
+    "paper-elements": "Polymer/paper-elements#~0.5.5"
   },
   "resolutions": {
     "ember": "canary"
